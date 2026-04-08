@@ -6,9 +6,12 @@ import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { useAppStore } from "@/lib/store/useAppStore";
+import { mockUser } from "@/lib/mockData";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAppStore();
   const formRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const [showPass, setShowPass] = useState(false);
@@ -28,7 +31,8 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 800));
+    login(mockUser);
     router.push("/dashboard");
   };
 

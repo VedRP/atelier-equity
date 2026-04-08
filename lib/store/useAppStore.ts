@@ -14,8 +14,8 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  user: mockUser,
-  isAuthenticated: true,
+  user: null,
+  isAuthenticated: false,
   sidebarOpen: true,
   notifications: mockNotifications,
   login: (user) => set({ user, isAuthenticated: true }),
