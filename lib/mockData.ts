@@ -1,0 +1,245 @@
+import type { Company, Transaction, Investment, Notification, AdminUser } from "./types";
+
+export const mockUser = {
+  id: "u1",
+  name: "Marcus Vane",
+  email: "marcus@atelierequity.com",
+  role: "Investor" as const,
+  tier: "Gold" as const,
+  kycStatus: "Verified" as const,
+  joinedAt: "2022-03-15",
+};
+
+export const mockCompanies: Company[] = [
+  {
+    id: "c1",
+    name: "Vanguard Properties III",
+    industry: "Real Estate",
+    description: "Premium residential and commercial real estate fund focused on tier-1 cities across North America.",
+    valuation: 450000000,
+    pricePerShare: 1250,
+    availableShares: 12000,
+    totalShares: 50000,
+    roi: 18.4,
+    riskLevel: "Low",
+    logo: "VP",
+    founded: "2018",
+    headquarters: "New York, NY",
+    employees: "120-200",
+    revenue: 42000000,
+    growth: 12.4,
+    marketType: "primary",
+    documents: [
+      { id: "d1", name: "Investment Memorandum", type: "PDF", size: "2.4 MB", uploadedAt: "2023-09-01" },
+      { id: "d2", name: "Financial Statements Q3", type: "PDF", size: "1.1 MB", uploadedAt: "2023-10-01" },
+    ],
+    chartData: [
+      { month: "Jan", value: 980 }, { month: "Feb", value: 1020 }, { month: "Mar", value: 1050 },
+      { month: "Apr", value: 1080 }, { month: "May", value: 1100 }, { month: "Jun", value: 1150 },
+      { month: "Jul", value: 1180 }, { month: "Aug", value: 1200 }, { month: "Sep", value: 1220 },
+      { month: "Oct", value: 1240 }, { month: "Nov", value: 1245 }, { month: "Dec", value: 1250 },
+    ],
+  },
+  {
+    id: "c2",
+    name: "Nebula BioTech Series B",
+    industry: "Venture Capital",
+    description: "Series B biotech company developing next-gen mRNA therapeutics for rare diseases.",
+    valuation: 280000000,
+    pricePerShare: 890,
+    availableShares: 8500,
+    totalShares: 30000,
+    roi: 31.2,
+    riskLevel: "High",
+    logo: "NB",
+    founded: "2020",
+    headquarters: "San Francisco, CA",
+    employees: "50-100",
+    revenue: 8500000,
+    growth: 31.2,
+    marketType: "primary",
+    documents: [
+      { id: "d3", name: "Pitch Deck", type: "PDF", size: "5.2 MB", uploadedAt: "2023-08-15" },
+    ],
+    chartData: [
+      { month: "Jan", value: 520 }, { month: "Feb", value: 580 }, { month: "Mar", value: 610 },
+      { month: "Apr", value: 650 }, { month: "May", value: 700 }, { month: "Jun", value: 720 },
+      { month: "Jul", value: 760 }, { month: "Aug", value: 800 }, { month: "Sep", value: 830 },
+      { month: "Oct", value: 860 }, { month: "Nov", value: 875 }, { month: "Dec", value: 890 },
+    ],
+  },
+  {
+    id: "c3",
+    name: "Atlas Logistics Bridge",
+    industry: "Private Debt",
+    description: "Infrastructure debt fund providing senior secured loans to logistics and supply chain companies.",
+    valuation: 180000000,
+    pricePerShare: 500,
+    availableShares: 25000,
+    totalShares: 80000,
+    roi: 12.8,
+    riskLevel: "Low",
+    logo: "AL",
+    founded: "2016",
+    headquarters: "Chicago, IL",
+    employees: "200-500",
+    revenue: 22000000,
+    growth: 8.2,
+    marketType: "primary",
+    documents: [
+      { id: "d4", name: "Loan Portfolio Summary", type: "PDF", size: "3.1 MB", uploadedAt: "2023-09-20" },
+    ],
+    chartData: [
+      { month: "Jan", value: 440 }, { month: "Feb", value: 450 }, { month: "Mar", value: 455 },
+      { month: "Apr", value: 462 }, { month: "May", value: 468 }, { month: "Jun", value: 474 },
+      { month: "Jul", value: 480 }, { month: "Aug", value: 485 }, { month: "Sep", value: 490 },
+      { month: "Oct", value: 495 }, { month: "Nov", value: 498 }, { month: "Dec", value: 500 },
+    ],
+  },
+  {
+    id: "c4",
+    name: "Mayfair Luxury Dev",
+    industry: "Real Estate",
+    description: "Ultra-luxury residential development in prime London and Dubai locations.",
+    valuation: 620000000,
+    pricePerShare: 2100,
+    availableShares: 5000,
+    totalShares: 20000,
+    roi: 22.6,
+    riskLevel: "Medium",
+    logo: "ML",
+    founded: "2015",
+    headquarters: "London, UK",
+    employees: "100-200",
+    revenue: 85000000,
+    growth: 15.8,
+    marketType: "primary",
+    documents: [
+      { id: "d5", name: "Project Prospectus", type: "PDF", size: "8.4 MB", uploadedAt: "2023-07-10" },
+    ],
+    chartData: [
+      { month: "Jan", value: 1600 }, { month: "Feb", value: 1680 }, { month: "Mar", value: 1720 },
+      { month: "Apr", value: 1780 }, { month: "May", value: 1820 }, { month: "Jun", value: 1880 },
+      { month: "Jul", value: 1920 }, { month: "Aug", value: 1960 }, { month: "Sep", value: 2000 },
+      { month: "Oct", value: 2040 }, { month: "Nov", value: 2070 }, { month: "Dec", value: 2100 },
+    ],
+  },
+  {
+    id: "c5",
+    name: "Urban Tech Fund",
+    industry: "Venture Capital",
+    description: "Early-stage fund investing in urban mobility, smart city, and proptech startups.",
+    valuation: 95000000,
+    pricePerShare: 340,
+    availableShares: 18000,
+    totalShares: 60000,
+    roi: 28.4,
+    riskLevel: "High",
+    logo: "UT",
+    founded: "2021",
+    headquarters: "Austin, TX",
+    employees: "20-50",
+    revenue: 3200000,
+    growth: 42.1,
+    marketType: "secondary",
+    documents: [],
+    chartData: [
+      { month: "Jan", value: 180 }, { month: "Feb", value: 200 }, { month: "Mar", value: 220 },
+      { month: "Apr", value: 250 }, { month: "May", value: 270 }, { month: "Jun", value: 290 },
+      { month: "Jul", value: 300 }, { month: "Aug", value: 315 }, { month: "Sep", value: 325 },
+      { month: "Oct", value: 332 }, { month: "Nov", value: 337 }, { month: "Dec", value: 340 },
+    ],
+  },
+  {
+    id: "c6",
+    name: "Blue Oak Fund IV",
+    industry: "Private Debt",
+    description: "Diversified private credit fund with focus on middle-market lending.",
+    valuation: 320000000,
+    pricePerShare: 750,
+    availableShares: 30000,
+    totalShares: 100000,
+    roi: 14.2,
+    riskLevel: "Medium",
+    logo: "BO",
+    founded: "2014",
+    headquarters: "Boston, MA",
+    employees: "300-500",
+    revenue: 48000000,
+    growth: 9.6,
+    marketType: "secondary",
+    documents: [
+      { id: "d6", name: "Fund Overview", type: "PDF", size: "2.8 MB", uploadedAt: "2023-06-01" },
+    ],
+    chartData: [
+      { month: "Jan", value: 620 }, { month: "Feb", value: 640 }, { month: "Mar", value: 655 },
+      { month: "Apr", value: 668 }, { month: "May", value: 680 }, { month: "Jun", value: 695 },
+      { month: "Jul", value: 708 }, { month: "Aug", value: 720 }, { month: "Sep", value: 730 },
+      { month: "Oct", value: 740 }, { month: "Nov", value: 746 }, { month: "Dec", value: 750 },
+    ],
+  },
+];
+
+export const mockTransactions: Transaction[] = [
+  { id: "t1", date: "Oct 24, 2023", assetClass: "Real Estate", entity: "Vanguard Properties III", type: "Capital Call", amount: 250000, status: "Completed" },
+  { id: "t2", date: "Oct 18, 2023", assetClass: "Venture Capital", entity: "Nebula BioTech Series B", type: "Direct Equity", amount: 125000, status: "Completed" },
+  { id: "t3", date: "Oct 12, 2023", assetClass: "Private Debt", entity: "Atlas Logistics Bridge", type: "Distribution", amount: 12450, status: "Settled" },
+  { id: "t4", date: "Oct 05, 2023", assetClass: "Real Estate", entity: "Mayfair Luxury Dev", type: "Commitment", amount: 500000, status: "Pending" },
+  { id: "t5", date: "Sept 28, 2023", assetClass: "Venture Capital", entity: "Urban Tech Fund", type: "Capital Call", amount: 75000, status: "Completed" },
+  { id: "t6", date: "Sept 15, 2023", assetClass: "Private Debt", entity: "Blue Oak Fund IV", type: "Distribution", amount: 142000, status: "Completed" },
+  { id: "t7", date: "Sept 10, 2023", assetClass: "Venture Capital", entity: "Urban Tech Fund", type: "Capital Call", amount: 500000, status: "Pending" },
+  { id: "t8", date: "Sept 05, 2023", assetClass: "Cash", entity: "Chase Bank 8829", type: "ACH Transfer", amount: 50000, status: "Completed" },
+  { id: "t9", date: "Aug 30, 2023", assetClass: "Platform", entity: "Atelier Equity", type: "Platform Fee", amount: -1250, status: "Completed" },
+];
+
+export const mockInvestments: Investment[] = [
+  { id: "i1", companyId: "c1", companyName: "Vanguard Properties III", industry: "Real Estate", sharesOwned: 200, purchasePrice: 980, currentPrice: 1250, investedAmount: 196000, currentValue: 250000, pnl: 54000, pnlPercent: 27.6, purchasedAt: "2023-01-15" },
+  { id: "i2", companyId: "c2", companyName: "Nebula BioTech Series B", industry: "Venture Capital", sharesOwned: 140, purchasePrice: 520, currentPrice: 890, investedAmount: 72800, currentValue: 124600, pnl: 51800, pnlPercent: 71.2, purchasedAt: "2023-02-20" },
+  { id: "i3", companyId: "c3", companyName: "Atlas Logistics Bridge", industry: "Private Debt", sharesOwned: 500, purchasePrice: 440, currentPrice: 500, investedAmount: 220000, currentValue: 250000, pnl: 30000, pnlPercent: 13.6, purchasedAt: "2023-03-10" },
+  { id: "i4", companyId: "c4", companyName: "Mayfair Luxury Dev", industry: "Real Estate", sharesOwned: 80, purchasePrice: 1600, currentPrice: 2100, investedAmount: 128000, currentValue: 168000, pnl: 40000, pnlPercent: 31.3, purchasedAt: "2023-04-05" },
+  { id: "i5", companyId: "c6", companyName: "Blue Oak Fund IV", industry: "Private Debt", sharesOwned: 300, purchasePrice: 620, currentPrice: 750, investedAmount: 186000, currentValue: 225000, pnl: 39000, pnlPercent: 21.0, purchasedAt: "2023-05-18" },
+];
+
+export const mockNotifications: Notification[] = [
+  { id: "n1", title: "Capital Call Notice", message: "Vanguard Properties III has issued a capital call of $250,000 due Nov 15.", type: "warning", read: false, createdAt: "2023-10-24T09:00:00Z" },
+  { id: "n2", title: "Distribution Received", message: "You received $12,450 distribution from Atlas Logistics Bridge.", type: "success", read: false, createdAt: "2023-10-12T14:30:00Z" },
+  { id: "n3", title: "KYC Verified", message: "Your identity verification has been approved.", type: "success", read: true, createdAt: "2023-09-01T10:00:00Z" },
+  { id: "n4", title: "New Company Listed", message: "Urban Tech Fund is now available on the Secondary Market.", type: "info", read: true, createdAt: "2023-08-20T08:00:00Z" },
+];
+
+export const mockAdminUsers: AdminUser[] = [
+  { id: "u1", name: "Marcus Vane", email: "marcus@example.com", role: "Investor", kycStatus: "Verified", joinedAt: "2022-03-15", totalInvested: 3150000, status: "Active" },
+  { id: "u2", name: "Alex Thompson", email: "alex@example.com", role: "Investor", kycStatus: "Verified", joinedAt: "2022-06-20", totalInvested: 1800000, status: "Active" },
+  { id: "u3", name: "Sarah Chen", email: "sarah@example.com", role: "Seller", kycStatus: "Pending", joinedAt: "2023-01-10", totalInvested: 0, status: "Pending" },
+  { id: "u4", name: "James Wilson", email: "james@example.com", role: "Investor", kycStatus: "Rejected", joinedAt: "2023-05-22", totalInvested: 0, status: "Suspended" },
+  { id: "u5", name: "Priya Sharma", email: "priya@example.com", role: "Investor", kycStatus: "Verified", joinedAt: "2022-11-08", totalInvested: 920000, status: "Active" },
+];
+
+export const dashboardGrowthData = [
+  { month: "Jan", value: 2800000 }, { month: "Mar", value: 2950000 }, { month: "May", value: 2900000 },
+  { month: "Jul", value: 3100000 }, { month: "Sep", value: 3050000 }, { month: "Nov", value: 3200000 },
+  { month: "Dec", value: 3842120 },
+];
+
+export const assetAllocationData = [
+  { name: "Residential RE", value: 62, color: "#3b5bdb" },
+  { name: "Venture Capital", value: 18, color: "#4f46e5" },
+  { name: "Private Debt", value: 12, color: "#818cf8" },
+  { name: "Cash", value: 8, color: "#c7d2fe" },
+];
+
+export const walletStats = {
+  totalLiquidity: 1248500,
+  inTransit: 250000,
+  committedCapital: 8500000,
+  reservedForFees: 12400,
+  currency: "USD",
+  yieldYTD: 2.4,
+};
+
+export const commissionData = [
+  { month: "Jan", revenue: 42000 }, { month: "Feb", revenue: 48000 }, { month: "Mar", revenue: 45000 },
+  { month: "Apr", revenue: 52000 }, { month: "May", revenue: 58000 }, { month: "Jun", revenue: 61000 },
+  { month: "Jul", revenue: 55000 }, { month: "Aug", revenue: 67000 }, { month: "Sep", revenue: 72000 },
+  { month: "Oct", revenue: 78000 }, { month: "Nov", revenue: 82000 }, { month: "Dec", revenue: 91000 },
+];
